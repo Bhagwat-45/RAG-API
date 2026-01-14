@@ -1,0 +1,300 @@
+Kubernetes (K8s): Complete Overview
+1. What is Kubernetes?
+
+Kubernetes, often abbreviated as K8s, is an open-source container orchestration platform originally developed by Google and now maintained by the Cloud Native Computing Foundation (CNCF). It automates the deployment, scaling, management, and operation of containerized applications.
+
+Kubernetes abstracts away the underlying infrastructure (VMs, bare metal, cloud) and provides a consistent, declarative way to run applications at scale.
+
+2. Why Kubernetes Exists
+
+Before Kubernetes, containerized apps were usually:
+
+Manually deployed
+
+Hard to scale
+
+Difficult to recover from failures
+
+Tightly coupled to infrastructure
+
+Kubernetes solves these problems by:
+
+Automatically restarting failed containers
+
+Distributing workloads across nodes
+
+Scaling applications up/down
+
+Managing service discovery and networking
+
+Enabling rolling updates and rollbacks
+
+3. Core Kubernetes Architecture
+
+A Kubernetes cluster consists of Control Plane components and Worker Nodes.
+
+Control Plane (Master Node)
+
+Responsible for managing the cluster.
+
+kube-apiserver
+
+Entry point for all REST commands
+
+Validates and processes API requests
+
+etcd
+
+Distributed key-value store
+
+Stores cluster state and configuration
+
+kube-scheduler
+
+Assigns Pods to nodes based on resources and constraints
+
+kube-controller-manager
+
+Runs controllers (Node, ReplicaSet, Job, etc.)
+
+Ensures desired state matches actual state
+
+Worker Nodes
+
+Run application workloads.
+
+kubelet
+
+Communicates with the API server
+
+Ensures containers are running as defined
+
+Container Runtime
+
+Docker, containerd, or CRI-O
+
+kube-proxy
+
+Manages networking and service routing
+
+4. Key Kubernetes Objects
+Pod
+
+Smallest deployable unit
+
+One or more containers sharing:
+
+Network namespace
+
+Storage volumes
+
+ReplicaSet
+
+Ensures a specified number of Pods are running
+
+Used by Deployments
+
+Deployment
+
+Manages stateless applications
+
+Supports:
+
+Rolling updates
+
+Rollbacks
+
+Scaling
+
+StatefulSet
+
+Manages stateful applications
+
+Stable network identity and persistent storage
+
+Used for databases like MySQL, Kafka
+
+DaemonSet
+
+Runs a Pod on every node
+
+Common for logging and monitoring agents
+
+Job & CronJob
+
+Job: Runs a task to completion
+
+CronJob: Scheduled Jobs
+
+5. Services & Networking
+Service
+
+Provides stable networking for Pods.
+
+Types:
+
+ClusterIP – internal access
+
+NodePort – exposes service on node IP
+
+LoadBalancer – cloud provider load balancer
+
+ExternalName – maps to external DNS
+
+Ingress
+
+Manages external HTTP/HTTPS access
+
+Works with Ingress Controllers (NGINX, Traefik)
+
+Supports routing, TLS, and host-based rules
+
+6. Storage in Kubernetes
+Volumes
+
+Ephemeral or persistent
+
+Shared between containers in a Pod
+
+PersistentVolume (PV)
+
+Represents physical storage
+
+PersistentVolumeClaim (PVC)
+
+Request for storage by a Pod
+
+Supports:
+
+NFS
+
+AWS EBS, GCP PD, Azure Disk
+
+CSI (Container Storage Interface)
+
+7. Configuration & Secrets
+ConfigMap
+
+Stores non-sensitive configuration data
+
+Injected via environment variables or files
+
+Secret
+
+Stores sensitive data (passwords, tokens)
+
+Base64 encoded
+
+Can be encrypted at rest
+
+8. Scaling & Self-Healing
+Horizontal Pod Autoscaler (HPA)
+
+Scales Pods based on:
+
+CPU
+
+Memory
+
+Custom metrics
+
+Self-Healing Features
+
+Restart failed containers
+
+Reschedule Pods on healthy nodes
+
+Replace terminated Pods automatically
+
+9. Deployment Strategies
+
+Rolling Update (default)
+
+Recreate
+
+Blue-Green Deployment
+
+Canary Deployment
+
+Kubernetes enables zero-downtime deployments when configured correctly.
+
+10. Security in Kubernetes
+
+RBAC (Role-Based Access Control)
+
+Namespaces for isolation
+
+Network Policies for traffic control
+
+Pod Security Standards
+
+Secrets management
+
+Image scanning & admission controllers
+
+11. Observability & Monitoring
+
+Common tools:
+
+Prometheus – metrics
+
+Grafana – dashboards
+
+ELK / EFK Stack – logging
+
+Jaeger – distributed tracing
+
+Kubernetes exposes metrics via the Metrics Server and APIs.
+
+12. Kubernetes Ecosystem
+
+Popular tools:
+
+Helm – package manager
+
+Kustomize – configuration customization
+
+Argo CD / Flux – GitOps
+
+Istio / Linkerd – service mesh
+
+Kubectl – CLI tool
+
+13. Where Kubernetes Is Used
+
+Microservices architectures
+
+CI/CD pipelines
+
+Cloud-native applications
+
+Hybrid & multi-cloud deployments
+
+Large-scale distributed systems
+
+Used by companies like Google, Netflix, Spotify, Airbnb, and Amazon.
+
+14. Advantages & Challenges
+Advantages
+
+High availability
+
+Scalability
+
+Vendor neutrality
+
+Declarative configuration
+
+Strong community support
+
+Challenges
+
+Steep learning curve
+
+Complex networking
+
+Requires operational maturity
+
+15. Summary
+
+Kubernetes is the industry standard for container orchestration, providing powerful tools to deploy, manage, and scale applications reliably. While complex, it enables organizations to build resilient, scalable, and cloud-agnostic systems when used correctly.
